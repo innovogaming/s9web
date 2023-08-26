@@ -1,0 +1,7 @@
+{
+  "name": "s9web",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

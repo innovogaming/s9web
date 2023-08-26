@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Detalle Promocion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Detalle Promocion</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+ 
+  <ion-content class="ion-padding">
+    <h1>Nombre Promocion</h1>
+    <h4>Fecha Sorteo</h4>
+    <h4>Valor Premio</h4>
+    <h4>Cantidad Participantes</h4>  
+  </ion-content>
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title> Footer </ion-title>
+    </ion-toolbar>
+  </ion-footer>
+
+  <ion-tabs>
+    <ion-tab-bar >
+
+      <ion-tab-button [routerLink]="['/main']">
+        <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button [routerLink]="['/validar']">
+        <ion-icon name="person-circle" aria-hidden="true"></ion-icon>
+        <ion-label>Validar Cliente</ion-label>
+      </ion-tab-button>      
+  
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Salir</ion-label>
+      </ion-tab-button>  
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-content>

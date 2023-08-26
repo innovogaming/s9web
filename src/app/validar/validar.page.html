@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Validar Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Validar Cliente</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-input label="RUT" label-placement="floating" fill="solid" placeholder="RUT"></ion-input>
+
+  <ion-button expand="block">Validar</ion-button>
+
+  <ion-tabs>
+    <ion-tab-bar >
+      <ion-tab-button [routerLink]="['/main']">
+        <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Menu</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/detalles']">
+        <ion-icon name="wallet-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Detalle Promocion</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Salir</ion-label>
+      </ion-tab-button>  
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
