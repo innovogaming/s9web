@@ -14,10 +14,10 @@
 
  
   <ion-content class="ion-padding">
-    <h1>Nombre Promocion</h1>
-    <h4>Fecha Sorteo</h4>
-    <h4>Valor Premio</h4>
-    <h4>Cantidad Participantes</h4>  
+    <h1>Nombre Promocion: {{ userState.promocion }}</h1>
+    <h4>Fecha Sorteo: {{ formattedDate }}</h4>
+    <h4>Premio: {{ userState.premio }}</h4>
+    <h4>{{ cantidadParticipantesText }}</h4>
   </ion-content>
 
   <ion-footer>
@@ -39,7 +39,7 @@
         <ion-label>Validar Cliente</ion-label>
       </ion-tab-button>      
   
-      <ion-tab-button [routerLink]="['/home']">
+      <ion-tab-button (click)="onLogout()">
         <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
         <ion-label>Salir</ion-label>
       </ion-tab-button>  

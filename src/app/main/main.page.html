@@ -12,8 +12,8 @@
   </ion-header>
 
   <ion-content class="ion-padding">
-    <h1>Bienvenido usuario</h1>
-    <h4>Nombre Tienda</h4>
+    <h1>Bienvenido {{ userState.name }}</h1>
+    <h4>{{ userState.store }}</h4>
   </ion-content>
 
   <ion-tabs>
@@ -29,7 +29,7 @@
         <ion-label>Detalle Promocion</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button [routerLink]="['/home']">
+      <ion-tab-button (click)="onLogout()">
         <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
         <ion-label>Salir</ion-label>
       </ion-tab-button>  
