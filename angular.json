@@ -31,7 +31,12 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "./node_modules/@swimlane/ngx-datatable/index.css",
+              "./node_modules/@swimlane/ngx-datatable/themes/material.css",
+              "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
+              "src/theme/variables.scss", 
+              "src/global.scss"],
             "scripts": []
           },
           "configurations": {
@@ -111,7 +116,12 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+                        "./node_modules/@swimlane/ngx-datatable/index.css",
+                        "./node_modules/@swimlane/ngx-datatable/themes/material.css",
+                        "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
+                        "src/theme/variables.scss", 
+                        "src/global.scss"],
             "scripts": []
           },
           "configurations": {

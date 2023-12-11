@@ -22,7 +22,8 @@ export class UserStateService {
       idPromocion: -1,
       premio: '',
       fecha: '',
-      habilitado: -1,
+      habilitado: -1,      
+      tipoUsuario: -1,
       isLoggedIn: false
     };
     this.userStateSubject = new BehaviorSubject<UserState>(initialState);
@@ -56,7 +57,8 @@ export class UserStateService {
       premio: '',
       fecha: '',
       habilitado: -1,
-      isLoggedIn: false
+      tipoUsuario: -1,
+      isLoggedIn: false      
     };
     this.userStateSubject.next(defaultState);
     // Limpe o estado no localStorage.

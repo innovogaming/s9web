@@ -8,5 +8,6 @@ export interface UserState {
   premio: string;
   fecha: string;
   habilitado: number;
-  isLoggedIn: boolean;
+  tipoUsuario: number;
+  isLoggedIn: boolean;  
 }

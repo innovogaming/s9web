@@ -47,6 +47,7 @@ export class HomePage {
         console.log("Premio:", response.user.premio);
         console.log("Fecha:", response.user.fecha);
         console.log("Habilitado:", response.user.habilitado);
+        console.log("tipoUsuario:", response.user.tipoUsuario);
 
 
         //this.userStateService.setUserState(response.user);
@@ -60,6 +61,7 @@ export class HomePage {
           premio: response.user.premio,
           fecha: response.user.fecha,
           habilitado: response.user.habilitado,
+          tipoUsuario: response.user.tipoUsuario,
           isLoggedIn: true
         };
         this.userStateService.setUserState(newState);

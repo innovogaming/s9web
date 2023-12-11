@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $pdo->prepare("SELECT usuarios.nombre as usuario, usuarios.id_usuario, 
     tiendas.nombre as tienda, tiendas.id_tienda, promociones.id_promocion, 
     promociones.nombre as promocion, promociones.premio, promociones.fecha_premio, 
-    promociones.habilitado FROM usuarios INNER JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda 
+    promociones.habilitado, usuarios.tipo_usuario  FROM usuarios INNER JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda 
     JOIN promociones ON tiendas.id_tienda = promociones.id_tienda WHERE login = ? AND password = ?");
     $stmt->execute([$username, $password]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -56,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'promocion' => $user['promocion'],
                 'premio' => $user['premio'],
                 'fecha' => $user['fecha_premio'],
-                'habilitado' => $user['habilitado']
+                'habilitado' => $user['habilitado'],
+                'tipoUsuario' => $user['tipo_usuario']
             ]
         ]);
     }
