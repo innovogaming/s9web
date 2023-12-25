@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Editar cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Editar cuenta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.tienda" label="Tienda" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.nombre" label="nombre" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.rut" readonly label="RUT" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.mail" label="Correo"  type="email" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.phone" label="Telefono" type="tel" placeholder="Enter text" maxlength="9"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.direccion" label="Direccion" placeholder="Enter text" ></ion-input>
+      </ion-item>
+      <ion-button expand="block" class="ion-margin" (click)="onEdit()">Editar</ion-button>
+    </ion-list>
+  </ion-list>
+</ion-content>

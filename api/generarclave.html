@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Senha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form id="createPasswordForm">
+            <h2>Crear Clave</h2>
+            <div class="input-group">
+                <label for="password">Clave</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmPassword">Confirmar Clave</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <button type="submit">Crear</button>
+        </form>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('createPasswordForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                var senha = document.getElementById('password').value;
+                var confirmarSenha = document.getElementById('confirmPassword').value;
+
+                if( senha != confirmarSenha)
+                {
+                    console.log("ERRO");
+                    alert("Las contraseñas no coinciden. Inténtalo de nuevo.");
+
+                }
+                else
+                {
+                    atualizarSenha(senha, confirmarSenha);
+                }
+            });
+        });
+
+        function getQueryParam(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function atualizarSenha(senha, confirmarSenha) 
+        {
+            console.log("Senha: ", senha, "Confirmar Senha: ", confirmarSenha);
+            var token = getQueryParam('token');
+            console.log(token)
+
+            //return;
+            fetch('generatepass.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token: token, senha: confirmarSenha })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) 
+                {
+                    alert('Senha atualizada com sucesso!');
+
+                    var urlAtual = window.location.href;
+                    var urlSemToken = urlAtual.split('?')[0];
+                    window.location.href = urlSemToken;
+                } 
+                else 
+                {
+                    alert('Falha ao atualizar a senha.');
+                }
+            })
+            .catch(error => 
+            {
+                console.error('Erro ao atualizar a senha:', error);
+                alert('Ocorreu um erro ao atualizar a senha.');
+            });
+        }
+    </script>
+</body>
+</html>

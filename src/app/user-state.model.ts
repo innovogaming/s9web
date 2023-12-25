@@ -1,12 +1,9 @@
 export interface UserState {
   id: number;
-  name: string;
-  store: string;
+  nombre: string;
+  apellido: string;
   idStore: number;
-  promocion: string;
-  idPromocion: number;
-  premio: string;
-  fecha: string;
+  tienda: string;
   habilitado: number;
   tipoUsuario: number;
   isLoggedIn: boolean;  

@@ -22,10 +22,10 @@ export class DetallesPage implements OnInit {
 
   ngOnInit() {
     this.userState = this.userStateService.getCurrentUserState();
-    this.formattedDate = moment(this.userState.fecha).format('DD/MM/YYYY HH:mm');
+    //this.formattedDate = moment(this.userState.fecha).format('DD/MM/YYYY HH:mm');
     console.log("Dados do usuário:", this.userState);
 
-    this.participantesService.verify(this.userState.idPromocion).subscribe(response => {
+    /*this.participantesService.verify(this.userState.idPromocion).subscribe(response => {
       if (response.status === 'success') 
       {
         console.log("Ok: " + response.amount );
@@ -36,7 +36,7 @@ export class DetallesPage implements OnInit {
         console.log("ERRO: " + response.reason);
         
       }
-    });
+    });*/
   }
 
   onLogout() {

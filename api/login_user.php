@@ -36,11 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $input['username'];
     $password = md5($input['password']);  // Usando md5 para senha (não é seguro para produção!)
 
-    $stmt = $pdo->prepare("SELECT usuarios.nombre as usuario, usuarios.id_usuario, 
+    /*$stmt = $pdo->prepare("SELECT usuarios.nombre as usuario, usuarios.id_usuario, 
     tiendas.nombre as tienda, tiendas.id_tienda, promociones.id_promocion, 
     promociones.nombre as promocion, promociones.premio, promociones.fecha_premio, 
-    promociones.habilitado, usuarios.tipo_usuario  FROM usuarios INNER JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda 
-    JOIN promociones ON tiendas.id_tienda = promociones.id_tienda WHERE login = ? AND password = ?");
+    promociones.habilitado, usuarios.tipo_usuario  FROM usuarios LEFT JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda 
+    LEFT JOIN promociones ON tiendas.id_tienda = promociones.id_tienda WHERE usuarios.correo = ? AND password = ?");*/
+    $stmt = $pdo->prepare("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.habilitado, usuarios.tipo_usuario, usuarios.id_tienda, tiendas.nombre as tienda
+    FROM usuarios LEFT JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda WHERE usuarios.correo = ? AND password = ?");
     $stmt->execute([$username, $password]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -49,13 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'status' => 'success',
             'user' => [
                 'id' => $user['id_usuario'],
-                'name' => $user['usuario'],
-                'store' => $user['tienda'],
+                'nombre' => $user['nombre'],
+                'apellido' => $user['apellido'],
                 'idStore' => $user['id_tienda'],
-                'idPromocion' => $user['id_promocion'],
-                'promocion' => $user['promocion'],
-                'premio' => $user['premio'],
-                'fecha' => $user['fecha_premio'],
+                'tienda' => $user['tienda'],
                 'habilitado' => $user['habilitado'],
                 'tipoUsuario' => $user['tipo_usuario']
             ]

@@ -45,7 +45,7 @@ export class ValidarPage implements OnInit {
     this.userState = this.userStateService.getCurrentUserState();
     this.rutValue = this.rutValue.replace(/-/g, '');
     console.log("Teste: " + this.rutValue );
-    if(validateRut(this.rutValue))
+    /*if(validateRut(this.rutValue))
     {
       this.validateService.validate(this.userState.idPromocion,this.userState.idPromocion,this.rutValue).subscribe(response => {
         if (response.status === 'success') 
@@ -65,7 +65,7 @@ export class ValidarPage implements OnInit {
     {
       console.log("RUT FAIL");
       this.presentAlert('RUT Invalido', '', 'Ingrese un RUT válido.');
-    }
+    }*/
     
   }
 

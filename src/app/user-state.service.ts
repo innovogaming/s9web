@@ -15,13 +15,10 @@ export class UserStateService {
     const storedUserState = localStorage.getItem('userState');
     const initialState = storedUserState ? JSON.parse(storedUserState) : {
       id: -1,
-      name: '',
-      store: '',
+      nombre: '',
+      apellido: '',
       idStore: -1,
-      promocion: '',
-      idPromocion: -1,
-      premio: '',
-      fecha: '',
+      tienda: '',
       habilitado: -1,      
       tipoUsuario: -1,
       isLoggedIn: false
@@ -49,13 +46,10 @@ export class UserStateService {
   clearUserState(): void {
     const defaultState = {
       id: -1,
-      name: '',
-      store: '',
+      nombre: '',
+      apellido: '',
       idStore: -1,
-      promocion: '',
-      idPromocion: -1,
-      premio: '',
-      fecha: '',
+      tienda: '',
       habilitado: -1,
       tipoUsuario: -1,
       isLoggedIn: false      

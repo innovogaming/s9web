@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Nueva cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nueva cuenta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-list>
+      <h4>Datos empresa:</h4>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.name" label="Nombre Empresa" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.razonsocial" label="Razon Social" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.rut" label="RUT" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.mail" label="Correo"  type="email" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.phone" label="Telefono" type="tel" placeholder="Enter text" maxlength="9"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.direccion" label="Direccion" placeholder="Enter text"></ion-input>
+      </ion-item>
+
+      <h4>Datos responsable:</h4>
+
+      <ion-item>
+        <ion-input [(ngModel)]="formData.name_user" label="Nombre" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.lastname_user" label="Apellido" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.rut_user" label="RUT" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.mail_user" label="Correo"  type="email" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="formData.phone_user" label="Telefono" type="tel" placeholder="Enter text" maxlength="9"></ion-input>
+      </ion-item>
+      
+      <ion-button expand="block" class="ion-margin" (click)="onSubmit()">Generar</ion-button>
+    </ion-list>
+  </ion-list>
+</ion-content>

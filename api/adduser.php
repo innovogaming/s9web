@@ -32,6 +32,10 @@ try {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
     
+
+    $id_tienda = $input['idStore'];
+    $user_type = $input['tipoUsuario'];
+
     $name_user = $input['nameUser'];
     $last_name = $input['lastUser']; 
     $rut = $input['rut'];
@@ -45,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$id_cliente) 
     {
         $token = bin2hex(random_bytes(16));
-        $stmt = $pdo->prepare("INSERT INTO usuarios (rut, nombre, apellido, correo, telefono, token, expiry_date ) VALUES (?, ?, ?, ?, ?, MD5(?), NOW() + INTERVAL 24 HOUR)");
-        $stmt->execute([$rut, $name_user, $last_name, $email, $phone, $token]);
+        $stmt = $pdo->prepare("INSERT INTO usuarios (rut, nombre, apellido, correo, telefono, token, expiry_date, id_tienda, tipo_usuario ) VALUES (?, ?, ?, ?, ?, MD5(?), NOW() + INTERVAL 24 HOUR, ?, ?)");
+        $stmt->execute([$rut, $name_user, $last_name, $email, $phone, $token, $id_tienda, $user_type]);
         //$id_cliente = $pdo->lastInsertId();        
         $mail = new PHPMailer();
 
@@ -92,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="email-container">
                     <div class="email-content">
                         <h1>Hola '.$name_user.' '.$last_name.'</h1>
-                        <p>Pinche en el boton abajo para confirmar su correo y generar su contraseña.</p>
-                        <a href='.$tokenString.' class="email-button">Crear contraseña</a>
+                        <p>Pinche en el boton abajo para confirmar su correo y generar su contrasena.</p>
+                        <a href='.$tokenString.' class="email-button">Crear contrasena</a>
                     </div>
                 </div>
             </body>

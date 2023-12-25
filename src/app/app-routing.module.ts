@@ -31,6 +31,38 @@ const routes: Routes = [
     path: 'adduser',
     loadChildren: () => import('./adduser/adduser.module').then( m => m.AdduserPageModule)
   },
+  {
+    path: 'edituser',
+    loadChildren: () => import('./edituser/edituser.module').then( m => m.EdituserPageModule)
+  },
+  {
+    path: 'completeuser',
+    loadChildren: () => import('./completeuser/completeuser.module').then( m => m.CompleteuserPageModule)
+  },
+  {
+    path: 'cuentas',
+    loadChildren: () => import('./cuentas/cuentas.module').then( m => m.CuentasPageModule)
+  },
+  {
+    path: 'addcuenta',
+    loadChildren: () => import('./addcuenta/addcuenta.module').then( m => m.AddcuentaPageModule)
+  },
+  {
+    path: 'edit-account',
+    loadChildren: () => import('./edit-account/edit-account.module').then( m => m.EditAccountPageModule)
+  },
+  {
+    path: 'bet',
+    loadChildren: () => import('./bet/bet.module').then( m => m.BetPageModule)
+  },
+  {
+    path: 'addbet',
+    loadChildren: () => import('./addbet/addbet.module').then( m => m.AddbetPageModule)
+  },
+  {
+    path: 'editbet',
+    loadChildren: () => import('./editbet/editbet.module').then( m => m.EditbetPageModule)
+  },
 ];
 
 @NgModule({

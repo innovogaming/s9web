@@ -19,7 +19,7 @@ export class AdduserPage implements OnInit {
       phone: ''
   };
   
-  rutValue: string = '';
+  //rutValue: string = '';
 
   constructor(private alertController: AlertController, private modalController: ModalController) { }
 
@@ -39,15 +39,15 @@ export class AdduserPage implements OnInit {
   onSubmit() 
   {
     console.log("Teste: " + this.formData.rut );
-    this.rutValue = this.formData.rut.replace(/-/g, '');
-    if(validateRut(this.rutValue))
+    this.formData.rut = this.formData.rut.replace(/-/g, '');
+    if(validateRut(this.formData.rut))
     {
-      console.log("RUT OK: " + this.rutValue );
+      console.log("RUT OK: " + this.formData.rut );
       this.modalController.dismiss(this.formData);
     }
     else
     {
-      console.log("RUT Invalido: " + this.rutValue );
+      console.log("RUT Invalido: " + this.formData.rut );
       this.presentAlert('RUT Invalido', '', 'Ingrese un RUT válido.');
     }
     

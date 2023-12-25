@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { ForgetpassService } from '../forgetpass.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserStateService } from '../user-state.service';
@@ -21,7 +22,7 @@ export class HomePage {
   email!: string;
   password!: string;
 
-  constructor(private userStateService: UserStateService, private router: Router, private alertController: AlertController, private authService: AuthService) { }
+  constructor(private userStateService: UserStateService, private router: Router, private alertController: AlertController, private authService: AuthService, private forgetPassService: ForgetpassService) { }
 
   async presentAlert(header: string, subHeader: string, message: string) {
     const alert = await this.alertController.create({
@@ -39,13 +40,6 @@ export class HomePage {
       if (response.status === 'success') {
         console.log("Detalhes do usuário:");
         console.log("ID:", response.user.id);
-        console.log("Nome:", response.user.name);
-        console.log("Tienda:", response.user.store);
-        console.log("idStore:", response.user.idStore);
-        console.log("Promocion:", response.user.promocion);
-        console.log("idPromocion:", response.user.idPromocion);
-        console.log("Premio:", response.user.premio);
-        console.log("Fecha:", response.user.fecha);
         console.log("Habilitado:", response.user.habilitado);
         console.log("tipoUsuario:", response.user.tipoUsuario);
 
@@ -53,13 +47,10 @@ export class HomePage {
         //this.userStateService.setUserState(response.user);
         const newState: UserState = {
           id: response.user.id,
-          name: response.user.name,
-          store: response.user.store,
+          nombre: response.user.nombre,
+          apellido: response.user.apellido,
           idStore: response.user.idStore,
-          promocion: response.user.promocion,
-          idPromocion: response.user.idPromocion,
-          premio: response.user.premio,
-          fecha: response.user.fecha,
+          tienda: response.user.tienda,
           habilitado: response.user.habilitado,
           tipoUsuario: response.user.tipoUsuario,
           isLoggedIn: true
@@ -70,6 +61,26 @@ export class HomePage {
 
       } else {
         console.log("ERRO");
+        this.presentAlert('Error de inicio de sesión', 'Intento de acceso fallido', 'Tus credenciales no son válidas o hubo un problema al iniciar sesión.');
+
+      }
+    });
+  }
+
+  onForget() {
+    this.forgetPassService.forget(this.email).subscribe(response => {
+      if (response.status === 'success') 
+      {
+        
+        //this.router.navigate(['/main']);
+        this.presentAlert('Recuperación clave', 'Verifique su correo', 'Un mensaje de recuperación fue enviado a su correo electrónico.');
+
+      } 
+      else 
+      {
+        console.log(this.email);
+        console.log(response.status);
+        console.log(response.reason);
         this.presentAlert('Error de inicio de sesión', 'Intento de acceso fallido', 'Tus credenciales no son válidas o hubo un problema al iniciar sesión.');
 
       }

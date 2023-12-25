@@ -4,13 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
 
   <div class="table-header">
     <button (click)="adicionar()" class="action-button-header"><ion-icon name="add-outline" aria-hidden="true" class="icon-button-header" ></ion-icon> Nuevo Usuario </button>
   </div>
 
-  <div class="ion-padding">
+  <ion-content class="ion-padding">
     <!-- Theme classes dark, material, bootstrap -->
     <ngx-datatable 
       class="material"
@@ -28,12 +28,44 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Ações" prop="name">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <button md-icon-button (click)="editar(value)" class="action-button"><ion-icon name="pencil-outline" aria-hidden="true"></ion-icon></button>
-          <button md-icon-button (click)="excluir(value)" class="action-button"><ion-icon name="trash-outline" aria-hidden="true"></ion-icon></button>
+          <button md-icon-button (click)="editar(row)" class="action-button"><ion-icon name="pencil-outline" aria-hidden="true"></ion-icon></button>
+          <button md-icon-button (click)="excluir(row)" class="action-button"><ion-icon name="trash-outline" aria-hidden="true"></ion-icon></button>
         </ng-template>
-      </ngx-datatable-column>
-
-    
+      </ngx-datatable-column>    
     </ngx-datatable>
-  </div>
+  </ion-content>
+
+  <ion-tab-bar >
+
+    <ion-tab-button  [routerLink]="['/main']">
+      <ion-icon name="home-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="userState.tipoUsuario === 0" [routerLink]="['/cuentas']">
+      <ion-icon name="wallet-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Cuentas</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="userState.tipoUsuario !== 0" [routerLink]="['/bet']">
+      <ion-icon name="wallet-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Sorteos</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/users']">
+      <ion-icon name="person-circle" aria-hidden="true"></ion-icon>
+      <ion-label>Usuarios</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/clientes']">
+      <ion-icon name="reader-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Clientes</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="onLogout()">
+      <ion-icon name="log-out-outline" aria-hidden="true"></ion-icon>
+      <ion-label>Salir</ion-label>
+    </ion-tab-button>  
+  </ion-tab-bar>
+    
 </ion-content>

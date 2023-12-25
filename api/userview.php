@@ -41,49 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //userType = 2 then Cliente
     if( $user_type == 1 )
     {
-        $stmt = $pdo->prepare("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.rut, usuarios.correo, usuarios.telefono, usuarios.habilitado, tiendas.nombre as tienda, usuarios.timeStamp FROM usuarios LEFT JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda WHERE usuarios.id_tienda = ?");
+        $stmt = $pdo->prepare("SELECT usuarios.id_usuario as id, usuarios.nombre, usuarios.apellido, usuarios.rut, usuarios.correo, usuarios.telefono, usuarios.habilitado, usuarios.timeStamp as creacion FROM usuarios LEFT JOIN tiendas ON usuarios.id_tienda = tiendas.id_tienda WHERE usuarios.id_tienda = ?");
         $stmt->execute([$id_tienda]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($stmt->rowCount()) {
-            echo json_encode([
-                'status' => 'success',
-                'user' => [
-                    'idUsuario' => $user['id_usuario'],
-                    'nombre' => $user['nombre'],
-                    'apellido' => $user['apellido'],
-                    'rut' => $user['rut'],
-                    'correo' => $user['correo'],
-                    'telefono' => $user['telefono'],
-                    'habilitado' => $user['habilitado'],
-                    'tienda' => $user['tienda'],
-                    'timeStamp' => $user['timeStamp']
-                ]
-            ]);
+        if ($stmt->rowCount()) 
+        {
+            echo json_encode(['status' => 'success', 'users' => $users]);
         }
-        else {
+        else 
+        {
             echo json_encode(['status' => 'fail']);
         }
     }
     else if( $user_type == 0 )
     {
-        $stmt = $pdo->prepare("SELECT usuarios.id_usuario, usuarios.nombre, usuarios.apellido, usuarios.rut, usuarios.correo, usuarios.telefono, usuarios.habilitado, usuarios.timeStamp FROM usuarios WHERE tipo_usuario = 0");
+        $stmt = $pdo->prepare("SELECT usuarios.id_usuario as id, usuarios.nombre, usuarios.apellido, usuarios.rut, usuarios.correo, usuarios.telefono, usuarios.habilitado, usuarios.timeStamp as creacion FROM usuarios WHERE tipo_usuario = 0");
         $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if ($stmt->rowCount()) {
-            echo json_encode([ 'status' => 'success',
-                'user' => [
-                    'idUsuario' => $user['id_usuario'],
-                    'nombre' => $user['nombre'],
-                    'apellido' => $user['apellido'],
-                    'rut' => $user['rut'],
-                    'correo' => $user['correo'],
-                    'telefono' => $user['telefono'],
-                    'habilitado' => $user['habilitado'],
-                    'timeStamp' => $user['timeStamp']
-                ]
-            ]);
+            echo json_encode(['status' => 'success', 'users' => $users]);
+
         }
         else {
             echo json_encode(['status' => 'fail']);

@@ -1,0 +1,44 @@
+.action-button {
+    margin-right: 10px; 
+    color: black;
+    font-size: 24px;
+    background-color: transparent !important; 
+    padding: 0; 
+}
+
+.table-header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 7px;
+    margin-left: 10px; 
+}
+
+.action-button-header {
+    margin-right: 10px; 
+    color: white;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;
+    font-size: 18px;
+    background-color: transparent !important; 
+    padding: 0; 
+}
+
+ion-backdrop {
+    opacity: 0.9;
+    background: var(--ion-color-primary);
+  }
+  
+  #box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ion-background-color, #fff);
+    width: 90%;
+    height: 100px;
+    border-radius: 10px;
+  }
