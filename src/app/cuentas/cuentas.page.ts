@@ -28,7 +28,8 @@ export class CuentasPage implements OnInit
   public rows: any;
   public alertButtons = ['OK'];
 
-  carregarDados(): void {
+  carregarDados(): void 
+  {
     this.accountViewService.view(this.userState.id).subscribe(response => {
       if (response.status === 'success') 
       {

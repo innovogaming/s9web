@@ -19,6 +19,19 @@
       </ion-button>
     </div>
     <h4>{{ userState.tipoUsuario ? userState.tienda : '' }}</h4>    
+
+    <ion-card *ngIf="showCard">
+      
+      <ion-card-header>
+        <ion-card-title>{{ tituloCard }}</ion-card-title>
+        <ion-card-subtitle>{{ subtitleCard }}</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <qrcode [qrdata]="conteudoQRCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+      </ion-card-content>
+    </ion-card>
+
   </ion-content>
 
     <ion-tab-bar >
@@ -33,19 +46,34 @@
         <ion-label>Cuentas</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button *ngIf="userState.tipoUsuario !== 0" [routerLink]="['/bet']">
+      <ion-tab-button *ngIf="userState.tipoUsuario === 1" [routerLink]="['/bet']">
         <ion-icon name="wallet-outline" aria-hidden="true"></ion-icon>
         <ion-label>Sorteos</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button [routerLink]="['/users']">
+      <ion-tab-button *ngIf="userState.tipoUsuario !== 2" [routerLink]="['/users']">
         <ion-icon name="person-circle" aria-hidden="true"></ion-icon>
         <ion-label>Usuarios</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button [routerLink]="['/clientes']">
+      <ion-tab-button *ngIf="userState.tipoUsuario !== 2" [routerLink]="['/clientes']">
         <ion-icon name="reader-outline" aria-hidden="true"></ion-icon>
         <ion-label>Clientes</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button *ngIf="userState.tipoUsuario === 2" [routerLink]="['/purchases']">
+        <ion-icon name="cart-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Compras</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button *ngIf="userState.tipoUsuario === 2" [routerLink]="['/tickets']">
+        <ion-icon name="receipt-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Tickets</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button *ngIf="userState.tipoUsuario === 2" [routerLink]="['/sorteos']">
+        <ion-icon name="gift-outline" aria-hidden="true"></ion-icon>
+        <ion-label>Sorteos</ion-label>
       </ion-tab-button>
   
       <ion-tab-button (click)="onLogout()">

@@ -63,6 +63,26 @@ const routes: Routes = [
     path: 'editbet',
     loadChildren: () => import('./editbet/editbet.module').then( m => m.EditbetPageModule)
   },
+  {
+    path: 'clientes',
+    loadChildren: () => import('./clientes/clientes.module').then( m => m.ClientesPageModule)
+  },
+  {
+    path: 'createaccount',
+    loadChildren: () => import('./createaccount/createaccount.module').then( m => m.CreateaccountPageModule)
+  },
+  {
+    path: 'purchases',
+    loadChildren: () => import('./purchases/purchases.module').then( m => m.PurchasesPageModule)
+  },
+  {
+    path: 'tickets',
+    loadChildren: () => import('./tickets/tickets.module').then( m => m.TicketsPageModule)
+  },
+  {
+    path: 'sorteos',
+    loadChildren: () => import('./sorteos/sorteos.module').then( m => m.SorteosPageModule)
+  },
 ];
 
 @NgModule({

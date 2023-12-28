@@ -1,0 +1,58 @@
+/* Estilos para o container */
+.container {
+    width: 100%;
+    max-width: 400px; /* Largura máxima do formulário */
+    margin: 0 auto; /* Centraliza o formulário */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do formulário */
+    background-color: #f9f9f9; /* Cor de fundo do formulário */
+}
+
+/* Estilos para o formulário */
+form#validatebet {
+    display: flex;
+    flex-direction: column; /* Organiza os elementos do formulário em coluna */
+}
+
+/* Estilos para labels */
+form#validatebet label {
+    margin-bottom: 5px; /* Espaço abaixo dos rótulos */
+}
+
+/* Estilos para inputs */
+form#validatebet input[type="text"],
+form#validatebet input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px; /* Espaço abaixo dos campos de entrada */
+    border: 1px solid #ddd; /* Borda dos campos de entrada */
+    border-radius: 4px; /* Cantos arredondados */
+}
+
+/* Estilos para o botão de envio */
+form#validatebet input[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    cursor: pointer; /* Cursor de mão ao passar o mouse sobre o botão */
+    transition: background-color 0.3s; /* Transição suave ao alterar o fundo */
+}
+
+/* Altera a cor de fundo do botão ao passar o mouse */
+form#validatebet input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

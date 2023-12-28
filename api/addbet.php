@@ -41,13 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $input['nombre'];
     $descripcion = $input['descripcion'];
     $dataHora = $input['dataHora'];
+
+    $dataTmp = new DateTime($dataHora);
+    $dataFormatadaMySQL = $dataTmp->format('Y-m-d H:i:s');
     
     try 
     {
 
         $token = bin2hex(random_bytes(16));
-        $stmt = $pdo->prepare("INSERT INTO promociones (nombre, id_tienda, premio, fecha_premio, description, ticket_value, token ) VALUES (?, ?, ?, ?, ?, ?, MD5(?) )");
-        $stmt->execute([$nombre, $idStore, $premio, $dataHora, $descripcion, $valor, $token]);
+        $stmt = $pdo->prepare("INSERT INTO promociones (nombre, id_tienda, premio, fecha_premio, description, ticket_value, token ) VALUES (?, ?, ?, ?, ?, ?, ? )");
+        $stmt->execute([$nombre, $idStore, $premio, $dataFormatadaMySQL, $descripcion, $valor, $token]);
         $id_usuario = $pdo->lastInsertId();
 
         echo json_encode(['status' => 'success']);

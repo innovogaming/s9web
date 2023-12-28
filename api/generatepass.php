@@ -34,8 +34,6 @@ $token = $data['token'];
 $senha = $data['senha'];
 $senhaHash = md5($senha);
 
-//$stmt = $pdo->prepare("UPDATE usuarios SET token = NULL, expiry_date = NULL, habilitado = 1 WHERE id_usuario = ?");
-//$stmt->execute([$user['id_usuario']]);
 $stmt = $pdo->prepare("UPDATE usuarios SET password = :senha, token = NULL, expiry_date = NULL, habilitado = 1 WHERE token = :token");
 $stmt->bindParam(':senha', $senhaHash);
 $stmt->bindParam(':token', $token);

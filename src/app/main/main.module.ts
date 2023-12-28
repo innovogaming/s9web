@@ -8,12 +8,19 @@ import { MainPageRoutingModule } from './main-routing.module';
 
 import { MainPage } from './main.page';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MainPageRoutingModule
+    MainPageRoutingModule,
+    QRCodeModule,
+    HttpClientModule
   ],
   declarations: [MainPage]
 })

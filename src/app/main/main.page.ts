@@ -8,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
 import { CompleteuserPage } from '../completeuser/completeuser.page';
 import { CompleteuserService } from '../completeuser.service';
 import { GetuserService } from '../getuser.service';
+import { GetgainService } from '../getgain.service';
 import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-main',
@@ -21,7 +23,15 @@ export class MainPage implements OnInit {
 
   userState!: UserState;
 
-  constructor(private router: Router,private http: HttpClient,private userStateService: UserStateService, private alertController: AlertController, private modalController: ModalController, private completeUserService: CompleteuserService, private getUserService: GetuserService) { }
+  showCard: boolean = false;
+  conteudoQRCode: string = 'Conteúdo inicial do QR Code';
+  tituloCard: string = 'Título Inicial';
+  subtitleCard: string = 'Título Inicial';
+
+  constructor(private getGainService:GetgainService, private router: Router,private http: HttpClient,private userStateService: UserStateService, private alertController: AlertController, private modalController: ModalController, private completeUserService: CompleteuserService, private getUserService: GetuserService) 
+  { 
+    
+  }
 
   async presentAlert(header: string, subHeader: string, message: string) {
     const alert = await this.alertController.create({
@@ -33,6 +43,40 @@ export class MainPage implements OnInit {
   
     await alert.present();
   }
+
+  carregarDados(): void 
+  {
+    console.log("user:" + this.userState.id);
+    this.getGainService.view(this.userState.id).subscribe(response => {
+      if (response.status === 'success') 
+      {
+        console.log("Contas carregadas com sucesso" );
+        //this.rows = response.users; 
+        /*this.rows = [
+          { id: 2, tienda: 'Loja 1', nombre: 'jhkjhkjhkjhkjhkkjh',
+            rut: "6576765765", direccion: "dfsdfsdfsdfdsfsfd", telefono: "45453534",
+            correo: "sfdsdff@dsdfsfd.com", habilitado: 1, responsable: "lkjlkflkje" },
+        ];*/
+        console.log(response.users);
+        console.log("token:" + response.users.token);
+        if( response.users.token )
+        {
+            console.log("SIM");
+
+          this.showCard = true;
+          this.conteudoQRCode = "http://innovogaming.com/api/validatebet.php?token=" + response.users.token;
+          this.tituloCard = response.users.nombre + "(" + response.users.tienda + ")"; 
+          this.subtitleCard = "Premio: " + response.users.premio;
+        }
+      } 
+      else 
+      {
+        console.log("ERRO: " + response.reason); 
+        //this.loadingIndicator = false;
+       
+      }
+    });    
+  } 
 
   completar() 
   {
@@ -107,8 +151,7 @@ export class MainPage implements OnInit {
       {
       
         console.log("NAO: " + response.status);
-
-        //this.carregarDados();
+        
       }
       
     });
@@ -120,6 +163,8 @@ export class MainPage implements OnInit {
   ngOnInit() {
     this.userState = this.userStateService.getCurrentUserState();
     console.log("nombre:", this.userState.nombre);   
+
+    this.carregarDados();
   }
 
   onLogout() {

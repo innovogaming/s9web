@@ -27,7 +27,7 @@ export class BetPage implements OnInit {
   public alertButtons = ['OK'];
 
   carregarDados(): void {
-    this.getBetService.view(this.userState.id).subscribe(response => {
+    this.getBetService.view(this.userState.idStore).subscribe(response => {
       if (response.status === 'success') 
       {
         console.log("Contas carregadas com sucesso" );
@@ -77,7 +77,7 @@ export class BetPage implements OnInit {
 
     const alert = await this.alertController.create({
       header: row.nombre,
-      subHeader: 'Ganador: ' + row.cliente,
+      subHeader: 'RUT Ganador: ' + row.rut,
       message: 'Descripcion:' + row.description
     });
 
@@ -103,7 +103,7 @@ export class BetPage implements OnInit {
           if (response.status === 'success') 
           {
             console.log("Ok");
-            this.presentAlert('Registro exitoso!', '', 'Empresa registrada al sistema!');
+            this.presentAlert('Registro exitoso!', '', 'Sorteo registrado al sistema!');
             this.carregarDados();          
     
           }
@@ -141,7 +141,7 @@ export class BetPage implements OnInit {
           if (response.status === 'success') 
           {            
             
-            this.presentAlert('Registro exitoso!', '', 'Edición de cuenta finalizada.');
+            this.presentAlert('Registro exitoso!', '', 'Edición de sorteo finalizado.');
 
             this.carregarDados();
 

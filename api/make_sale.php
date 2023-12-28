@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $quantidadeTickets = floor($amount / $promo['ticket_value']);
 
-                $stmt = $pdo->prepare("INSERT INTO tickets (ticket_token, id_usuario, id_compra, id_promocion ) VALUES (MD5(?), ?, ?, ? )");
+                $stmt = $pdo->prepare("INSERT INTO tickets (ticket_token, id_usuario, id_compra, id_promocion ) VALUES (?, ?, ?, ? )");
 
                 for ($i = 0; $i < $quantidadeTickets; $i++) 
                 {

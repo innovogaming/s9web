@@ -44,7 +44,7 @@ export class AddcuentaPage implements OnInit {
 
   onSubmit() 
   {
-    this.formData.rut = this.formData.rut.replace(/-/g, '');
+    this.formData.rut = this.formData.rut.replace(/-/g, '');   
     this.formData.rut_user = this.formData.rut_user.replace(/-/g, '');
 
     //this.rutValue = this.formData.rut.replace(/-/g, '');

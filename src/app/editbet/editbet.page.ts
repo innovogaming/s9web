@@ -40,16 +40,28 @@ export class EditbetPage implements OnInit {
   {
     if (this.bet) 
     {
-      const agora = new Date(this.bet.fecha);
+      //const agora = new Date(this.bet.fecha);
       
       this.formData.nombre = this.bet.nombre;
       this.formData.premio = this.bet.premio;
-      this.formData.dataHora = agora.toISOString();
+      this.formData.dataHora = this.formatarParaISO8601SemUTC(this.bet.fecha);
       this.formData.valor = this.bet.valor;
       this.formData.descripcion = this.bet.description;
       this.formData.id = this.bet.id;
       
     }
+  }
+
+  formatarParaISO8601SemUTC(dataString: string): string {
+    const data = new Date(dataString);
+    const ano = data.getFullYear();
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    const dia = data.getDate().toString().padStart(2, '0');
+    const horas = data.getHours().toString().padStart(2, '0');
+    const minutos = data.getMinutes().toString().padStart(2, '0');
+    const segundos = data.getSeconds().toString().padStart(2, '0');
+
+    return `${ano}-${mes}-${dia}T${horas}:${minutos}:${segundos}`;
   }
 
   onSubmit() 

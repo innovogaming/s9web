@@ -36,13 +36,23 @@ catch (\PDOException $e)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     $input = json_decode(file_get_contents('php://input'), true);
-     
-    $stmt = $pdo->prepare("SELECT promociones.id_promocion as id,  promociones.nombre,  promociones.premio,  promociones.fecha_premio as fecha,  promociones.description,  promociones.ticket_value as valor,  promociones.fecha_pago, tiendas.nombre as tienda,  CONCAT(usuarios.nombre, ' ', usuarios.apellido) as cliente FROM promociones LEFT JOIN tiendas ON promociones.id_tienda = tiendas.id_tienda LEFT JOIN usuarios ON promociones.id_usuario = usuarios.id_usuario");
-    $stmt->execute();
-    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $id = $input['id'];
+     
+    $stmt = $pdo->prepare("SELECT promociones.id_promocion as id, promociones.nombre,  promociones.premio,  promociones.fecha_premio as fecha,  promociones.description,  promociones.ticket_value as valor,  promociones.fecha_pago, tiendas.nombre as tienda,  CONCAT(usuarios.nombre, ' ', usuarios.apellido) as cliente, usuarios.rut FROM promociones LEFT JOIN tiendas ON promociones.id_tienda = tiendas.id_tienda LEFT JOIN usuarios ON promociones.id_usuario = usuarios.id_usuario WHERE tiendas.id_tienda = ?");
+    $stmt->execute([$id]);
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
     if ($stmt->rowCount()) 
     {
+        foreach ($results as $key => $value) 
+        {
+            if ($value['fecha_pago']) {
+                $date = new DateTime($value['fecha_pago']);
+                $results[$key]['fecha_pago'] = $date->format('Y-m-d H:i:s');
+            }
+        }
+
         echo json_encode(['status' => 'success', 'users' => $users]);
     }
     else
